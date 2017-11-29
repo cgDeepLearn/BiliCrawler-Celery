@@ -13,6 +13,7 @@ app.conf.update(
     CELERY_ACCEPT_CONTENT=['json'],
     CELERY_TASK_SERIALIZER='json',
     CELERY_RESULT_SERIALIZER='json',
+    # worker_max_memory_per_child
     # CELERY_ANNOTATIONS = {'tasks.user': {'rate_limit': '300/m'}}
 )
 
