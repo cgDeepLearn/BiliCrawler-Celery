@@ -1,4 +1,7 @@
-git clone
+# 一个celery 分布式爬虫
+## 使用
+1. git clone
+
 2. 切换到工程主目录建立env和依赖
 ```python
 virtualenv dbenv # 建立虚拟环境dbenv
@@ -76,7 +79,7 @@ log_path = os.path.join(log_dir, 'test.log')  # log文件名
 ```python
 source activate dbenv/bin/activate # windwods请使用上面提到的相应方法
 ```
-在主目录再运行简单的测试程序
+- 在主目录再运行简单的测试程序
 ```python
 python tests/test_db.py  # 测试普通的数据库增删改查
 python tests/test_orm.py  # 测试ORM
@@ -84,7 +87,7 @@ python tests/test_logger.py  # 测试logger模块
 python tests/test_celery.py  # 测试celery任务
 ```
 
-# 计划
+## 计划
 - 添加数据库操作的log装饰器
 - 添加其他类型的数据库连接操作
 - 修正celery任务丢失的问题
