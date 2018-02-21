@@ -1,8 +1,13 @@
 # 一个celery 分布式爬虫
+
+Celery + requests 分布式爬虫(爬取数据仅做数据处理与分析学习使用)
+
 ## 使用
+
 1. git clone
 
 2. 切换到工程主目录建立env和依赖
+
 ```python
 virtualenv dbenv # 建立虚拟环境dbenv
 source dbenv/bin/activate  # 激活python虚拟环境，windows下进入dbenv/bin目录
@@ -10,8 +15,11 @@ source dbenv/bin/activate  # 激活python虚拟环境，windows下进入dbenv/bi
 # 如果你是用pyvenv或者conda env或envwrapper等都可以
 pip install -r requirements.txt  # 安装依赖项
 ```
+
 3. 进入config文件夹，修改配置文件db.fig
+
 - 各数据库参数可根据你本地安装环境配置
+
 ```python
 # 安装配置数据库请搜索各类教程，若设置了其他的用户密码等，请修改配置文件相应参数
 # 例如只安装了postgresql，则只设置postgresql下各项配置，engine=1
@@ -44,8 +52,10 @@ dbname = testdb
 [engine]
 dbindex = 0
 ```
+
 - 配置celery broker和backend，若使用redis设置了密码(建议在安装redis后配置/etc/redis/redis.conf设置密码),修改host ip为你的redis-broker ip， broker和backend为redis database no,可自行配置。backend也可采用其他的backend，若需要请搜索celery相应文档
 - 若采用rabbitmq安装配置请搜索相应文档，然后将配置文档相应参数修改为你的自己的参数
+
 ```python
 [redis-celery]
 password = yourpassword
@@ -61,7 +71,6 @@ host = yourhostip
 port = 5672
 vhost = testvhost
 ```
-
 
 4. 配置logger文件夹下mylog.py下的logging模块需要读取的dictConfig
 ```python
@@ -88,6 +97,7 @@ python tests/test_celery.py  # 测试celery任务
 ```
 
 ## 计划
+
 - 添加数据库操作的log装饰器
 - 添加其他类型的数据库连接操作
-- 修正celery任务丢失的问题
+- 修正celery任务速率与错误处理的问题
