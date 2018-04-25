@@ -1,14 +1,14 @@
 # 一个celery 分布式爬虫
 
-Celery + requests 分布式爬虫(爬取数据仅做数据处理与分析学习使用)
+`Celery` + `requests` 分布式爬虫(爬取数据仅做数据处理与分析学习使用)
 
 ## 使用
 
-1. git clone
+### 1. git clone
 
-2. 切换到工程主目录建立env和依赖
+### 2. 切换到工程主目录建立env和依赖
 
-```python
+```shell
 virtualenv dbenv # 建立虚拟环境dbenv
 source dbenv/bin/activate  # 激活python虚拟环境，windows下进入dbenv/bin目录
 运行activate
@@ -16,7 +16,7 @@ source dbenv/bin/activate  # 激活python虚拟环境，windows下进入dbenv/bi
 pip install -r requirements.txt  # 安装依赖项
 ```
 
-3. 进入config文件夹，修改配置文件db.fig
+### 3. 进入config文件夹，修改配置文件db.fig
 
 - 各数据库参数可根据你本地安装环境配置
 
@@ -53,8 +53,13 @@ dbname = testdb
 dbindex = 0
 ```
 
-- 配置celery broker和backend，若使用redis设置了密码(建议在安装redis后配置/etc/redis/redis.conf设置密码),修改host ip为你的redis-broker ip， broker和backend为redis database no,可自行配置。backend也可采用其他的backend，若需要请搜索celery相应文档
-- 若采用rabbitmq安装配置请搜索相应文档，然后将配置文档相应参数修改为你的自己的参数
+- 配置celery broker和backend
+
+若使用redis设置了密码(建议在安装redis后配置`/etc/redis/redis.conf`设置密码),修改`host ip`为你的`redis-broker i`p, broker和backend为`redis database number`,可自行配置.backend也可采用其他的backend.
+
+`redis`和`celery`安装配置请参考[Celery安装配置](https://github.com/cgDeepLearn/LinuxSetups/blob/master/docs/python-lib/Celery.md)
+
+- 若采用`rabbitmq`安装配置请搜索相应文档，然后将配置文档相应参数修改为你的自己的参数
 
 ```python
 [redis-celery]
@@ -72,7 +77,8 @@ port = 5672
 vhost = testvhost
 ```
 
-4. 配置logger文件夹下mylog.py下的logging模块需要读取的dictConfig
+### 4. 配置logger文件夹下mylog.py下的logging模块需要读取的dictConfig
+
 ```python
 log_dir = BASE_DIR + '/logs'  # log文件在主目录的logs文件下
 if not os.path.exists(log_dir):
@@ -82,13 +88,16 @@ log_path = os.path.join(log_dir, 'test.log')  # log文件名
 # 其他相应log文件请根据需要配置
 ```
 
-5. 配置tasks模块下的config进行celery的相应配置
+### 5. 配置tasks模块下的config进行celery的相应配置
 
-6. 确保已经进入dbenv虚拟环境,未进入请运行：
+### 6. 确保已经进入dbenv虚拟环境,未进入请运行：
+
 ```python
 source activate dbenv/bin/activate # windwods请使用上面提到的相应方法
 ```
+
 - 在主目录再运行简单的测试程序
+
 ```python
 python tests/test_db.py  # 测试普通的数据库增删改查
 python tests/test_orm.py  # 测试ORM
